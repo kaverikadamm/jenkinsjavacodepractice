@@ -1,0 +1,24 @@
+---
+- name: Create and delete directory
+  hosts: local
+  become: yes
+
+  tasks:
+
+    - name: Create directory
+      file:
+        path: /tmp/testdir
+        state: directory
+
+    - name: Verify directory creation
+      command: ls -ld /tmp/testdir
+      register: dir_output
+
+    - name: Display directory details
+      debug:
+        var: dir_output.stdout
+
+    - name: Delete directory
+      file:
+        path: /tmp/testdir
+        state: absent
