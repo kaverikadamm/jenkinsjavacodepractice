@@ -1,0 +1,26 @@
+So open sudo visudo >> at the end add  YOUR_USERNAME(kaveri) ALL=(ALL) NOPASSWD: ALL >> 
+if error then above is solution
+
+Create and Delete Directories on Managed Node
+Step 1: Create Directory
+Command:
+ansible local -m file -a "path=/tmp/testdir state=directory"
+
+Step 2: Verify Directory Creation
+ls -ld /tmp/testdir
+
+Step 3: Delete Directory
+Command:
+ansible local -m file -a "path=/tmp/testdir state=absent"
+
+Step 4: Verify Directory Deletion
+ls -ld /tmp/testdir
+
+Q2
+echo "Hello Ansible" > hello.txt
+cat hello.txt
+
+ansible local -m copy -a "src=hello.txt dest=/tmp/hello.txt"
+cat /tmp/hello.txt
+
+ansible local -m file -a "path=/tmp/hello.txt state=absent"
