@@ -1,0 +1,15 @@
+wsl --install -d Ubuntu-22.04 
+wsl -l –v
+wsl
+sudo apt update && sudo apt upgrade -y
+sudo apt install ansible -y
+ansible --version
+sudo mkdir -p /etc/ansible
+sudo vi /etc/ansible/hosts
+inside the file add:
+[local]
+localhost ansible_connection=local
+esc :wq
+
+test if ansible can communicate with localhost
+ansible local -m ping
