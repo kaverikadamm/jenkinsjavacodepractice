@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'master',
+                url: 'https://github.com/Gaurav-Chavan22/Java_Project.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'javac Hello.java'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'java Hello'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build and Test Successful'
+        }
+
+        failure {
+            echo 'Build Failed'
+        }
+    }
+}
